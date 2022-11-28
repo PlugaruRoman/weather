@@ -13,6 +13,7 @@
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
     "@types/react-query": "^1.2.9",
+    "@types/recharts": "^1.8.24",
     "axios": "^1.2.0",
     "ebs-design": "^0.0.1-beta.135",
     "eslint": "8.28.0",
@@ -21,6 +22,8 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-query": "^3.39.2",
+    "recharts": "^2.1.16",
+    "sass": "^1.56.1",
     "typescript": "4.9.3"
   }
 }
