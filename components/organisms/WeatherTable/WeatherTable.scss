@@ -1,0 +1,31 @@
+.weather-table__list {
+  height: 400px;
+  width: 650px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(110.83deg, #23282e -2.21%, #2a3139 104.21%);
+  border-radius: 29px;
+  color: #ffffff;
+  overflow: auto;
+}
+
+.weather-table__list-element {
+  padding: 12.6px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s ease-in-out;
+  &:hover {
+    background: linear-gradient(110.83deg, #323941 -2.21%, #404d5c 104.21%);
+  }
+  .weather-table__list-temperature {
+    padding-left: 10px;
+  }
+}
+.ebs-icon.ebs-icon--arrow-bottom {
+  font-size: 20px !important;
+  color: #ffffff;
+  cursor: pointer;
+}

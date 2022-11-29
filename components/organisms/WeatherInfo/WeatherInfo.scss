@@ -1,0 +1,24 @@
+.weather-info__header {
+  padding: 12.6px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &:hover {
+    background: linear-gradient(
+      110.83deg,
+      #323941 -2.21%,
+      rgba(0, 0, 0, 0),
+      #404d5c 104.21%
+    );
+  }
+}
+.weather-info__body {
+  width: 100%;
+}
+
+.ebs-icon.ebs-icon--arrow-top {
+  font-size: 20px !important;
+  color: #ffffff;
+  cursor: pointer;
+}

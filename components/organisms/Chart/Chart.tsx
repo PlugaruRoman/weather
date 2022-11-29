@@ -5,7 +5,7 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
+  ResponsiveContainer,
 } from 'recharts';
 
 interface WeatherChartDataProps {
@@ -15,29 +15,50 @@ interface WeatherChartDataProps {
 export const Chart: React.FC<WeatherChartDataProps> = (data) => {
   return (
     data?.data && (
-      <LineChart
-        width={1000}
-        height={400}
-        data={data?.data?.list?.map((el: any) => ({
-          name: el.dt_txt,
-          min: Object.values(el.main)[2],
-          max: Object.values(el.main)[3],
-        }))}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray='3 3' />
-        <XAxis dataKey='name' />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Line type='monotone' dataKey='min' stroke='#8884d8' strokeWidth={3} />
-        <Line type='monotone' dataKey='max' stroke='#82ca9d' strokeWidth={3} />
-      </LineChart>
+      <div className='chart-content'>
+        <h3 className='chart-title'>Hourly forecast</h3>
+        <ResponsiveContainer width='100%' height='100%'>
+          <LineChart
+            width={650}
+            height={400}
+            data={data?.data?.list?.map((el: any) => ({
+              name: el.dt_txt,
+              min: el.main['temp_min'],
+              max: el.main['temp_max'],
+            }))}
+            margin={{
+              top: 5,
+              right: 30,
+              left: -10,
+              bottom: 15,
+            }}
+          >
+            <CartesianGrid horizontal={true} vertical={false} />
+            <XAxis dataKey='name' />
+            <YAxis
+              type='number'
+              tickFormatter={(temp) => `${temp} °C`}
+              tick={{ stroke: 'white' }}
+            />
+            <Tooltip />
+
+            <Line
+              type='monotone'
+              dataKey='min'
+              stroke='#8884d8'
+              strokeWidth={3}
+              dot={false}
+            />
+            <Line
+              type='monotone'
+              dataKey='max'
+              stroke='#82ca9d'
+              strokeWidth={3}
+              dot={false}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
     )
   );
 };
