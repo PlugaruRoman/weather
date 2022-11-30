@@ -15,6 +15,7 @@
     "@types/react-query": "^1.2.9",
     "@types/recharts": "^1.8.24",
     "axios": "^1.2.0",
+    "dotenv": "^16.0.3",
     "ebs-design": "^0.0.1-beta.135",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.5",

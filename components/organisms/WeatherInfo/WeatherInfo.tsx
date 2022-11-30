@@ -1,45 +1,45 @@
 import React from 'react';
 import { Icon } from 'ebs-design';
 import Image from 'next/image';
-import { Pie, PieChart } from 'recharts';
+import { WeatherList } from 'api/index';
 
 interface WeatherInfoProps {
-  data: any;
-  setState: any;
+  data: WeatherList | undefined;
+  setState: (prev: WeatherList | undefined) => void;
 }
 
-export const WeatherInfo: React.FC<WeatherInfoProps> = (props) => {
-  console.log(props);
-
+export const WeatherInfo: React.FC<WeatherInfoProps> = ({ data, setState }) => {
   return (
     <>
       <div className='weather-info__header'>
-        <div>{props.data.dt_txt}</div>
-        <Icon onClick={props.setState} type='arrow-top' />
+        <div>{data?.dt_txt}</div>
+        <Icon onClick={() => setState(data)} type='arrow-top' />
       </div>
       <div className='weather-info__body'>
-        <Image
-          height={50}
-          width={50}
-          alt='clouds'
-          src={`/${props?.data?.weather[0]['id']}.svg`}
-        />
-        Feels like {Math.round(props.data.main['feels_like'])}°C,
-        {props.data.weather[0]['description']}
+        <div>
+          <Image
+            height={50}
+            width={50}
+            alt='clouds'
+            src={`/${data?.weather[0].id}.svg`}
+          />
+          Feels like {Math.round(data!.main.feels_like)}°C ,{' '}
+          {data?.weather[0].description}
+        </div>
+        <div>
+          The high will be {data!.main.temp_max}°C , the low will be{' '}
+          {data!.main.temp_min}°C.
+        </div>
+        <div>
+          <Image height={50} width={50} alt='clouds' src={`/wind.svg`} />
+          <span>Wind: {data!.wind.speed.toFixed(1)}m/s</span>
+        </div>
+        <div>
+          <Image height={50} width={50} alt='clouds' src={`/humidity.svg`} />
+          <span>Humidity: {data?.main.humidity}%</span>
+        </div>
+        <div>Visibility {(data!.visibility / 1000).toFixed(1)}km</div>
       </div>
-      <PieChart width={400} height={400}>
-        <Pie
-          dataKey='value'
-          startAngle={360}
-          endAngle={0}
-          data={[{ value: props.data.main['humidity'] }]}
-          cx='50%'
-          cy='50%'
-          outerRadius={80}
-          fill='#8884d8'
-          label
-        />
-      </PieChart>
     </>
   );
 };

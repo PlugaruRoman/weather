@@ -788,6 +788,11 @@ dom-helpers@^3.4.0:
   dependencies:
     "@babel/runtime" "^7.1.2"
 
+dotenv@^16.0.3:
+  version "16.0.3"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.3.tgz#115aec42bac5053db3c456db30cc243a5a836a07"
+  integrity sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==
+
 ebs-design@^0.0.1-beta.135:
   version "0.0.1-beta.135"
   resolved "https://registry.yarnpkg.com/ebs-design/-/ebs-design-0.0.1-beta.135.tgz#b56333d32cbf6f37ea500a7e43ca83af53095649"

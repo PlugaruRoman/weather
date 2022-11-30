@@ -1,49 +1,51 @@
 import React from 'react';
 import Image from 'next/image';
 import { Icon } from 'ebs-design';
-import { WeatherInfo } from '../WeatherInfo/WeatherInfo';
+import { WeatherInfo } from 'components/index';
+import { WeatherList } from 'api/index';
 
 interface WeatherTableDataProps {
-  data: any;
+  data: WeatherList[] | undefined;
 }
 
-export const WeatherTable: React.FC<WeatherTableDataProps> = (props) => {
-  const [tableState, setTableState] = React.useState(true);
-  const [selectedListElement, setSelectedListElement] = React.useState();
+export const WeatherTable: React.FC<WeatherTableDataProps> = ({ data }) => {
+  const [tableState, setTableState] = React.useState<boolean>(true);
+  const [selectedListElement, setSelectedListElement] =
+    React.useState<WeatherList>();
 
-  const onClickArrowButton = (el: any) => {
+  const onClickArrowButton = (prev: WeatherList | undefined) => {
     setTableState((prev) => !prev);
-    setSelectedListElement(el);
+    setSelectedListElement(prev);
   };
 
   return (
     <ul className={'weather-table__list'}>
       {tableState ? (
-        props?.data?.list.map((el: any) => (
-          <li className='weather-table__list-element' key={el?.dt}>
-            <div>{el?.dt_txt}</div>
+        data?.map((i) => (
+          <li className='weather-table__list-item' key={i.dt}>
+            <div>{i.dt_txt}</div>
             <div>
               <Image
                 height={20}
                 width={20}
                 alt='clouds'
-                src={`/${el?.weather[0]['id']}.svg`}
+                src={`/${i.weather[0].id}.svg`}
               />
               <span className='weather-table__list-temperature'>
-                {Math.round(el?.main['temp_min'])}°C /{' '}
-                {Math.round(el?.main['temp_max'])}°C
+                {Math.round(i.main.temp_min)}°C / {Math.round(i.main.temp_max)}
+                °C
               </span>
             </div>
-            <div>{el?.weather[0]['description']}</div>
+            <div>{i.weather[0].description}</div>
             <Icon
-              onClick={() => onClickArrowButton(el)}
+              onClick={() => onClickArrowButton(i)}
               className='arrow-button'
               type='arrow-bottom'
             />
           </li>
         ))
       ) : (
-        <WeatherInfo setState={setTableState} data={selectedListElement} />
+        <WeatherInfo setState={onClickArrowButton} data={selectedListElement} />
       )}
     </ul>
   );
