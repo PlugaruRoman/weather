@@ -1,14 +1,12 @@
 import Head from 'next/head';
 import { useQuery } from 'react-query';
 import 'ebs-design/dist/styles/index.scss';
-import { Chart } from 'components/organisms';
-import { WeatherTable } from 'components/organisms';
+import { Chart, CountryCard, WeatherTable } from 'components/index';
 import { WeatherService } from 'api/index';
-import { CountryCard } from 'components/organisms';
 
 export default function Home() {
   const { data } = useQuery('weather', WeatherService.getWeather);
-
+  console.log(data);
   return (
     <div className='container'>
       <Head>
